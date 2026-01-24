@@ -28,6 +28,4 @@ module "secrets-store-csi-driver" {
 
     eks_name                            = var.eks_name
     secrets_arn                         = var.secrets_arn
-    aws_iam_openid_connect_provider_arn = var.aws_iam_openid_connect_provider_arn
-    aws_iam_openid_connect_provider_url = var.aws_iam_openid_connect_provider_url
 }

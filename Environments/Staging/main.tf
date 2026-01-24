@@ -60,9 +60,7 @@ module "K8s_eks_addons" {
   enable_internal_nginx               = true
   enable_aws_secret_store             = true
   secrets_arn                         = var.secrets_arn
-  aws_iam_openid_connect_provider_arn = module.eks_cluster.aws_iam_openid_connect_provider_arn
-  aws_iam_openid_connect_provider_url = module.eks_cluster.aws_iam_openid_connect_provider_url
-
+  
   depends_on = [ module.eks_cluster ]
 }
 
