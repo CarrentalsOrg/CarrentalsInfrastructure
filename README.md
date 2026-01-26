@@ -11,9 +11,10 @@ Run-down of the infrastructure elements created:
 - RDS database (postges)
 
 Infrastructure diagram:
+
 ![Screenshot](carrentals_infrastructure.png)
 
-##Modules description
+## Modules description
 ### Networking
 Here, we create all the necessary network components to support our EKS cluster:
 - VPC
@@ -33,10 +34,22 @@ In this module, we provision the EKS and the respective node group. We also prov
 
 ### EKS_K8s_addons
 Here we install the following k8s addons:
-- aws-load-balancer-controller
 - nginx-ingress-controller
+- aws-load-balancer-controller
 - cluster-autoscaler
 - secrets-store-csi-drive
+- secrets-store-csi-driver-provider-aws
+- cert-manager
+
+`nginx-ingress-controller` is our ingress controller, and  `aws-load-balancer-controller` is used to provision external AWS network load balancers via Kubernetes resources.
+`cluster-autoscaler` its in the name, it auto-scales the cluster when full by creating more nodes for new pods to be scheduled.
+`secrets-store-csi-drive` addon is used to integrate secrets with many different cloud providers. In our case, we want to integrate our Kubernetes secrets with AWS Secret Store Manager. So we also need to install `secrets-store-csi-driver-provider-aws`.
+`cert-manager` automaticaly request a TLS certificate from letsencrypt
+
+
+### RDS
+Here, we create an RDS  in our private subnet group and its respective security group with an ingress rule to allow access within our VPC.
+
 
   
 
