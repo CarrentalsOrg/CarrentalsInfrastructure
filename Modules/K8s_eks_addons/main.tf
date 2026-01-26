@@ -15,9 +15,9 @@ module "aws-lbc" {
     vpc_id      = var.vpc_id
 }
 
-module "internal-nginx-ingress" {
-    source  = "./internal_nginx_ingress"
-    count   = var.enable_internal_nginx? 1:0
+module "external-nginx-ingress" {
+    source  = "./external_nginx_ingress"
+    count   = var.enable_external_nginx? 1:0
 
      depends_on = [ module.aws-lbc ] 
 }
@@ -28,4 +28,9 @@ module "secrets-store-csi-driver" {
 
     eks_name                            = var.eks_name
     secrets_arn                         = var.secrets_arn
+}
+
+module "cert_manager" {
+    source                              =  "./cert_manager"
+    count                               =  var.enable_cert_manager? 1:0
 }

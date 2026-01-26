@@ -30,11 +30,17 @@ variable "enable_aws_secret_store" {
     default = false
 }
 
-variable "enable_internal_nginx" {
+variable "enable_cert_manager" {
+    description = "Enable cert manager"
+    type = bool
+    default = false
+}
+
+variable "enable_external_nginx" {
   type = bool
   default = false
   validation {
-    condition     =  !var.enable_internal_nginx || var.enable_aws_lbc
+    condition     =  !var.enable_external_nginx || var.enable_aws_lbc
     error_message = "aws load balancer controler must also be enabled"
   }
 }
