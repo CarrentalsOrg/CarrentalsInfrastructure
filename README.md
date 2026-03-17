@@ -7,7 +7,7 @@ Run-down of the infrastructure elements created:
 - Nat Gateway
 - Routing tables
 - Network loadbalancer
-- EKS
+- EKS (with auto scaling group)
 - RDS database (postges)
 
 Infrastructure diagram:
